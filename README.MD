@@ -3,7 +3,7 @@
 
 ### **You can run this project on your PS4 from our custom host link via GitHub Pages**
 
-> **⚠️ THIS PROJECT WAS ORIGINAL BASE CODE MADE BY [RawGame](https://www.facebook.com/RawGameStore/)**
+> **⚠️ THIS PROJECT WAS ORIGINAL BASE CODE MADE BY [RawGame]
 
 > **⚠️ CUSTOM PRESENTATION & VISUAL ANIMATIONS DESIGNED BY OGH**
 
