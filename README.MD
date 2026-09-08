@@ -45,7 +45,7 @@ The framework routes your system user-agent version to the correct target block 
 
 If you find this clean, fast, and stylized deployment framework helpful, consider supporting the customization and hosting maintenance efforts:
 
-👉 **[Faire un don avec PayPal](https://paypal.me)**
+👉 **[Faire un don avec PayPal](https://paypal.me/obenchara)**
 
 ---
 
