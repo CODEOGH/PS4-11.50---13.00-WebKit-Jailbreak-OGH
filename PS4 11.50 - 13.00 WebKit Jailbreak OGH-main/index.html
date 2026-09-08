@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" manifest="cache.appcache">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PS4 11.50 - 13.00 WebKit Exploit By OGH</title>
+<style>
+  html, body { 
+    margin: 0; 
+    padding: 0; 
+    background: linear-gradient(rgba(11, 13, 16, 0.85), rgba(11, 13, 16, 0.85)), url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #c8ced8;
+    font: 15px/1.45 "Segoe UI", system-ui, sans-serif; 
+  }
+  #wrap { padding:16px 18px; }
+  #state { font-size:22px; font-weight:700; margin:0 0 6px; }
+  #det { font-size:13px; color:#8b95a3; margin:0 0 4px; }
+  #det b { color:#c8ced8; font-weight:600; }
+  #cache { font-size:12px; color:#5c6672; margin:0 0 10px; min-height:14px; }
+  #cache.cacheok { color:#7fd0a0; }
+  .ok { color:#7fd0a0; } .bad { color:#d08a7f; } .warn { color:#d8c07f; }
+  #brand { text-align:center; padding:8px 10px; background:rgba(14, 17, 22, 0.9);
+           border-bottom:1px solid #1e2732; }
+  #brand img { width:28px; height:28px; margin-right:8px; border-radius:50%;
+               vertical-align:middle; }
+  #brand b { font-size:15px; font-weight:700; letter-spacing:.14em;
+             color:#e6ebf2; vertical-align:middle; }
+             
+  .progress-container {
+    width: 100%;
+    background-color: #1e2732;
+    border-radius: 6px;
+    margin: 15px 0;
+    overflow: hidden;
+    border: 1px solid #2d3846;
+  }
+  #progress-bar {
+    height: 8px;
+    width: 0%;
+    background-color: #7fd0a0;
+    box-shadow: 0 0 8px rgba(127, 208, 160, 0.5);
+    border-radius: 6px;
+    transition: width 0.2s ease;
+  }
+
+  #donate-container {
+    text-align: center; 
+    margin-top: 25px;
+  }
+  #donate-btn {
+    display: inline-block;
+    padding: 8px 18px;
+    background-color: #161b22;
+    color: #f1c40f;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid #f1c40f;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+  }
+  #donate-btn:hover {
+    background-color: #f1c40f;
+    color: #0b0d10;
+    box-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
+  }
+
+  #cat-fullscreen-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    z-index: 999999;
+    justify-content: center;
+    align-items: center;
+  }
+  #cat-fullscreen-overlay img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+</style>
+</head>
+<body>
+<!-- CHANGEMENT TITRE EXACT -->
+<div id="brand"><img src="logo_raw.png" alt="" width="28" height="28"><b>PS4 11.50 - 13.00 WebKit Exploit By OGH</b></div>
+<div id="wrap">
+  <div id="state">detecting firmware...</div>
+  <div id="det"></div>
+  <div id="cache"></div>
+  
+  <div class="progress-container">
+      <div id="progress-bar"></div>
+  </div>
+
+  <div id="donate-container">
+      <a href="https://paypal.me/obenchara" target="_blank" id="donate-btn">💛 Faire un don (PayPal)</a>
+  </div>
+</div>
+
+<div id="cat-fullscreen-overlay">
+  <img id="cat-random-img" src="" alt="result">
+</div>
+
+<script>
+(function () {
+    var stateEl = document.getElementById("state");
+    var detEl = document.getElementById("det");
+    var cacheEl = document.getElementById("cache");
+    var barEl = document.getElementById("progress-bar");
+
+    function setState(t, c) { stateEl.textContent = t; stateEl.className = c || ""; }
+    function setCache(t, ok) { cacheEl.textContent = t; cacheEl.className = ok ? "cacheok" : ""; }
+    function setProgress(pct) { if(barEl) barEl.style.width = pct + "%"; }
+
+    var params = new URLSearchParams(location.search);
+
+    var key = null, fwnum = null;
+    var m = /PlayStation\s+4[\/ ](\d+)\.(\d+)/.exec(navigator.userAgent);
+    if (m) {
+        var minor = parseInt(m[2], 16);
+        var ms = minor.toString(16);
+        if (ms.length < 2) ms = "0" + ms;
+        key = m[1] + "." + ms;
+        fwnum = parseInt(m, 10) * 100 + parseInt(ms, 10);
+    }
+    var bug = null, why = "";
+    var forced = params.get("bug");
+    if (forced === "lapse" || forced === "poops") {
+        bug = forced; why = "forced via ?bug=" + forced;
+    } else if (!key) {
+        why = "user-agent is not a PlayStation 4";
+    } else if (fwnum <= 1202) {
+        bug = "lapse"; why = key + " <= 12.02";
+    } else if (fwnum >= 1250) {
+        bug = "poops"; why = key + " >= 12.50";
+    } else {
+        why = key + " -- no working bug (lapse ends at 12.02, poops needs 12.50)";
+    }
+    detEl.innerHTML = "firmware <b>" + (key || "unknown") + "</b>"
+        + " &middot; bug <b>" + (bug || "none") + "</b> &middot; " + why;
+
+    if (!bug) { setState("UNSUPPORTED FIRMWARE", "bad"); return; }
+
+    var target = (bug === "lapse" ? "run_lapse.html" : "run_poops.html")
+        + location.search;
+        
+    function go() { 
+        setProgress(100);
+        setState("loading " + bug + " chain...", "warn");
+        location.replace(target); 
+    }
+
+    function waitForTap(msg, action) {
+        setState(msg, "warn");
+        setTimeout(action, 500); 
+    }
+
+    var ac = window.applicationCache;
+    if (!ac || !document.documentElement.hasAttribute("manifest")) {
+        go();
+    } else if (!navigator.onLine) {
+        setCache("offline -- from cache", true);
+        go();
+    } else if (ac.status === ac.IDLE) {
+        setCache("cached", true);
+        go();
+    } else if (ac.status === ac.UPDATEREADY) {
+        try { ac.swapCache(); } catch (e) {}
+        setCache("update downloaded", true);
+        waitForTap("UPDATE READY -- reloading...", function () { location.reload(); });
+    } else {
+        setCache("checking cache...");
+        ac.addEventListener("downloading",
+            function () { setCache("caching for offline (first run)..."); }, false);
+            
+        ac.addEventListener("progress", function (e) {
+            if (e && e.total) {
+                var pct = Math.round((e.loaded / e.total) * 100);
+                setCache("caching " + pct + "%");
+                setProgress(pct);
+            }
+        }, false);
+
+        ac.addEventListener("cached", function () {
+            setCache("cached for offline use", true);
+            waitForTap("CACHED -- running...", go);
+        }, false);
+        ac.addEventListener("updateready", function () {
+            try { ac.swapCache(); } catch (e) {}
+            setCache("update downloaded", true);
+            waitForTap("UPDATE READY -- reloading...", function () { location.reload(); });
+        }, false);
+
+        ac.addEventListener("noupdate", function () {
+            setCache("cached -- offline ready", true);
+            go();
+        }, false);
+        ac.addEventListener("error", function () {
+            setCache("cache unavailable");
+            waitForTap("CACHE FAILED -- running anyway...", go);
+        }, false);
+        ac.addEventListener("obsolete", function () {
+            setCache("cache obsolete");
+            waitForTap("CACHE OBSOLETE -- running...", go);
+        }, false);
+    }
+})();
+</script>
+</body>
+</html>
