@@ -66,7 +66,7 @@ The framework routes your system user-agent version to the correct target block 
 
 1. Launch your console's native **Web Browser** application.
 2. Press the **Options** button on your controller, open settings, and execute both **Delete Cookies** and **Clear Website Data** to prevent old conflicts.
-3. Saisissez l'adresse : [codeogh.github.io/ogh](https://github.io)
+3. Saisissez l'adresse : https://codeogh.github.io/ogh
 4. Let the loading bar cache files up to `100%`. Once done, you can safely disconnect your PlayStation from the network; your host will load completely offline out of local browser storage memory.
 
 ---
