@@ -11,24 +11,43 @@
     padding: 0; 
     background: url('background.jpg') no-repeat center center fixed;
     background-size: cover;
-    /* RECTIFICATION : Textes de base passés en blanc clair */
     color: #ffffff;
     font: 15px/1.45 "Segoe UI", system-ui, sans-serif; 
   }
   
-  #wrap { padding:16px 18px; }
-  #state { font-size:22px; font-weight:700; margin:0 0 6px; }
+  #wrap { 
+    padding: 16px 18px; 
+  }
   
-  /* RECTIFICATION : Textes de détails passés en blanc clair très lisible */
-  #det { font-size:13px; color:#f0f3f6; margin:0 0 4px; }
+  /* --- AJOUT : Filtre noir transparent derrière le statut principal --- */
+  #state { 
+    font-size: 22px; 
+    font-weight: 700; 
+    margin: 0 0 12px; 
+    background: rgba(0, 0, 0, 0.65);
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* --- AJOUT : Filtre noir transparent derrière les infos de détection et cache --- */
+  #det, #cache { 
+    background: rgba(0, 0, 0, 0.65);
+    padding: 8px 14px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  #det { font-size:13px; color:#f0f3f6; }
   #det b { color:#ffffff; font-weight:600; }
-  #cache { font-size:12px; color:#e2e8f0; margin:0 0 10px; min-height:14px; }
+  #cache { font-size:12px; color:#e2e8f0; min-height:14px; display: inline-block; }
   
-  /* RECTIFICATION : Gestion des couleurs d'état (Succès, Échec/Erreur, Attention) */
   .ok { color:#7fd0a0; } 
   #cache.cacheok { color:#7fd0a0; }
-  .bad { color:#ff9f43; } /* Orange clair pour les erreurs fatales */
-  .warn { color:#ffb84d; } /* Orange clair scintillant pour les chargements */
+  .bad { color:#ff9f43; } 
+  .warn { color:#ffb84d; } 
   
   #brand { text-align:center; padding:8px 10px; background:rgba(14, 17, 22, 0.85);
            border-bottom:1px solid #1e2732; }
@@ -39,11 +58,12 @@
              
   .progress-container {
     width: 100%;
-    background-color: #1e2732;
+    background-color: rgba(30, 39, 50, 0.8);
     border-radius: 6px;
     margin: 15px 0;
     overflow: hidden;
     border: 1px solid #2d3846;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
   }
   #progress-bar {
     height: 8px;
@@ -69,6 +89,7 @@
     border: 1px solid #f1c40f;
     border-radius: 20px;
     transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
   }
   #donate-btn:hover {
     background-color: #f1c40f;
@@ -98,9 +119,9 @@
 <body>
 <div id="brand"><img src="logo_raw.png" alt="" width="28" height="28"><b>PS4 11.50 - 13.00 WebKit Exploit By OGH</b></div>
 <div id="wrap">
-  <div id="state">detecting firmware...</div>
+  <div><div id="state">detecting firmware...</div></div>
   <div id="det"></div>
-  <div id="cache"></div>
+  <div><div id="cache"></div></div>
   
   <div class="progress-container">
       <div id="progress-bar"></div>
@@ -131,11 +152,11 @@
     var key = null, fwnum = null;
     var m = /PlayStation\s+4[\/ ](\d+)\.(\d+)/.exec(navigator.userAgent);
     if (m) {
-        var minor = parseInt(m[2], 16);
+        var minor = parseInt(m, 16);
         var ms = minor.toString(16);
         if (ms.length < 2) ms = "0" + ms;
-        key = m[1] + "." + ms;
-        fwnum = parseInt(m[1], 10) * 100 + parseInt(ms, 10);
+        key = m + "." + ms;
+        fwnum = parseInt(m, 10) * 100 + parseInt(ms, 10);
     }
     var bug = null, why = "";
     var forced = params.get("bug");
@@ -222,4 +243,5 @@
 </script>
 </body>
 </html>
+
 
