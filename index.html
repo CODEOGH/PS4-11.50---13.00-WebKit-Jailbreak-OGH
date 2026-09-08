@@ -4,34 +4,38 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PS4 jailbreak 12.00 - 13.00</title>
-<!-- AJOUT FAVICON : Votre logo OGH s'affichera maintenant dans l'onglet du navigateur -->
 <link rel="icon" type="image/png" href="logo_raw.png">
 <style>
-  /* --- RECTIFICATION : Fond d'écran 100% clair et lumineux sans filtre sombre --- */
   html, body { 
     margin: 0; 
     padding: 0; 
     background: url('background.jpg') no-repeat center center fixed;
     background-size: cover;
-    color: #c8ced8;
+    /* RECTIFICATION : Textes de base passés en blanc clair */
+    color: #ffffff;
     font: 15px/1.45 "Segoe UI", system-ui, sans-serif; 
   }
   
   #wrap { padding:16px 18px; }
   #state { font-size:22px; font-weight:700; margin:0 0 6px; }
-  #det { font-size:13px; color:#8b95a3; margin:0 0 4px; }
-  #det b { color:#c8ced8; font-weight:600; }
-  #cache { font-size:12px; color:#5c6672; margin:0 0 10px; min-height:14px; }
-  #cache.cacheok { color:#7fd0a0; }
-  .ok { color:#7fd0a0; } .bad { color:#d08a7f; } .warn { color:#d8c07f; }
   
-  /* --- Fond du bandeau légèrement opaque pour garder le texte bien visible en haut --- */
+  /* RECTIFICATION : Textes de détails passés en blanc clair très lisible */
+  #det { font-size:13px; color:#f0f3f6; margin:0 0 4px; }
+  #det b { color:#ffffff; font-weight:600; }
+  #cache { font-size:12px; color:#e2e8f0; margin:0 0 10px; min-height:14px; }
+  
+  /* RECTIFICATION : Gestion des couleurs d'état (Succès, Échec/Erreur, Attention) */
+  .ok { color:#7fd0a0; } 
+  #cache.cacheok { color:#7fd0a0; }
+  .bad { color:#ff9f43; } /* Orange clair pour les erreurs fatales */
+  .warn { color:#ffb84d; } /* Orange clair scintillant pour les chargements */
+  
   #brand { text-align:center; padding:8px 10px; background:rgba(14, 17, 22, 0.85);
            border-bottom:1px solid #1e2732; }
   #brand img { width:28px; height:28px; margin-right:8px; border-radius:50%;
                vertical-align:middle; }
   #brand b { font-size:15px; font-weight:700; letter-spacing:.14em;
-             color:#e6ebf2; vertical-align:middle; }
+             color:#ffffff; vertical-align:middle; }
              
   .progress-container {
     width: 100%;
@@ -127,11 +131,11 @@
     var key = null, fwnum = null;
     var m = /PlayStation\s+4[\/ ](\d+)\.(\d+)/.exec(navigator.userAgent);
     if (m) {
-        var minor = parseInt(m, 16);
+        var minor = parseInt(m[2], 16);
         var ms = minor.toString(16);
         if (ms.length < 2) ms = "0" + ms;
-        key = m + "." + ms;
-        fwnum = parseInt(m, 10) * 100 + parseInt(ms, 10);
+        key = m[1] + "." + ms;
+        fwnum = parseInt(m[1], 10) * 100 + parseInt(ms, 10);
     }
     var bug = null, why = "";
     var forced = params.get("bug");
