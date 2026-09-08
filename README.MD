@@ -16,36 +16,6 @@
 
 ---
 
-## 🛠️ Project Structure
-
-
-
-├── index.html          # Automated home layout with progress bar & PayPal
-├── run_lapse.html      # Re-designed Lapse chain execution page
-├── run_poops.html      # Re-designed Poops chain execution page
-├── chain_lapse.js      # Exploit mechanics for 11.50 - 12.02
-├── chain_poops.js      # Exploit mechanics for 12.50 - 13.00
-├── core.js             # Shared exploit core orchestration
-├── mem.js              # Read/Write primitives
-├── int64.js            # 64-bit integer helper data types
-├── rpc_worker.js       # Background execution pipeline thread
-├── ps4_offsets.js      # Firmware configuration registers database
-├── payload.bin         # Standard modular target code payload loader
-├── patches/            # Hardcoded compilation binary blobs
-│   ├── 1100.bin
-│   ├── 1150.bin
-│   ├── 1200.bin
-│   ├── 1250.bin
-│   └── 1300.bin
-├── cache.appcache      # All-in-one storage manifest for offline hosting
-├── logo_raw.png        # Circular yellow & blue OGH brand icon
-├── background.jpg      # Immersive PlayStation background wallpaper
-├── success.jpg         # Explicit "Jailbreak success" screen graphic
-└── failed.jpg          # Explicit "Jailbreak failed" screen graphic
-```
-
----
-
 ## 🎮 Supported Firmware Configurations
 
 The framework routes your system user-agent version to the correct target block automatically:
