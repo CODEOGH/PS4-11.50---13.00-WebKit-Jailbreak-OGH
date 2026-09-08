@@ -11,7 +11,7 @@
 - **Brand New UI Design:** Implemented a high-definition PlayStation gaming background and integrated a custom OGH circular logo badge.
 - **Real-Time Progress Bar:** Added a functional visual loading bar synchronized with the actual browser's offline deployment cache status.
 - **Zero-Click Automation:** The interface automatically detects the firmware and boots the appropriate exploit chain after a brief buffer delay (no controller input required).
-- **Streamlined Offline Assets:** two lightweight, static fullscreen indicators (`success.jpg` and `failed.jpg`) featuring clean text indicators.
+- **Streamlined Offline Assets:** Two lightweight, static fullscreen indicators (`success.jpg` and `failed.jpg`) featuring clean text indicators.
 - **Integrated Donations:** Embedded a native, console-friendly golden donation trigger linked directly to PayPal.Me.
 
 ---
