@@ -19,25 +19,25 @@
     padding: 16px 18px; 
   }
   
-  /* --- AJOUT : Filtre noir transparent derrière le statut principal --- */
+  /* --- RECTIFICATION : Opacité réduite à 0.35 derrière le statut principal --- */
   #state { 
     font-size: 22px; 
     font-weight: 700; 
     margin: 0 0 12px; 
-    background: rgba(0, 0, 0, 0.65);
+    background: rgba(0, 0, 0, 0.35);
     display: inline-block;
     padding: 6px 14px;
     border-radius: 6px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
   
-  /* --- AJOUT : Filtre noir transparent derrière les infos de détection et cache --- */
+  /* --- RECTIFICATION : Opacité réduite à 0.35 derrière les blocs d'informations --- */
   #det, #cache { 
-    background: rgba(0, 0, 0, 0.65);
+    background: rgba(0, 0, 0, 0.35);
     padding: 8px 14px;
     border-radius: 6px;
     margin-bottom: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
   
   #det { font-size:13px; color:#f0f3f6; }
@@ -58,12 +58,12 @@
              
   .progress-container {
     width: 100%;
-    background-color: rgba(30, 39, 50, 0.8);
+    background-color: rgba(30, 39, 50, 0.6);
     border-radius: 6px;
     margin: 15px 0;
     overflow: hidden;
     border: 1px solid #2d3846;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   }
   #progress-bar {
     height: 8px;
@@ -89,7 +89,7 @@
     border: 1px solid #f1c40f;
     border-radius: 20px;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   }
   #donate-btn:hover {
     background-color: #f1c40f;
