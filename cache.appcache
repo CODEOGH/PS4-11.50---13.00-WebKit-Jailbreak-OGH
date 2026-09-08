@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# build ogh_clean_v3_final
+# build ogh_1300_exploit_fixed
 
 index.html
 run_lapse.html
@@ -15,6 +15,7 @@ logo_raw.png
 payload.bin
 success.jpg
 failed.jpg
+background.jpg
 patches/1100.bin
 patches/1150.bin
 patches/1200.bin

@@ -1,75 +1,82 @@
+# PS4 11.50 - 13.00 WebKit Exploit By OGH
 
-# PS4 11.50 - 13.00 WebKit Jailbreak OGH
+### **🚀 Host Link: [codeogh.github.io/ogh](https://github.io)**
 
-### **You can run this project on your PS4 from our custom host link via GitHub Pages**
+> **⚠️ CREDITS:** This project is a customized fork based on the original base exploit extraction made by **[RawGame]**. Special thanks to the developers of the `lapse` and `poops` exploit chains.
 
-> **⚠️ THIS PROJECT WAS ORIGINAL BASE CODE MADE BY [RawGame]
+---
 
-> **⚠️ CUSTOM PRESENTATION & VISUAL ANIMATIONS DESIGNED BY OGH**
+## ✨ Features Added By OGH
 
-> This is a customized fork that adds an automatic progression bar, zero-click automation, and incorporates the custom OGH branding structure alongside the community exploit assets. Please support the original lapse and poops chain developers.
+- **Brand New UI Design:** Implemented a high-definition PlayStation gaming background and integrated a custom OGH circular logo badge.
+- **Real-Time Progress Bar:** Added a functional visual loading bar synchronized with the actual browser's offline deployment cache status.
+- **Zero-Click Automation:** The interface automatically detects the firmware and boots the appropriate exploit chain after a brief buffer delay (no controller input required).
+- **Streamlined Offline Assets:** two lightweight, static fullscreen indicators (`success.jpg` and `failed.jpg`) featuring clean text indicators.
+- **Integrated Donations:** Embedded a native, console-friendly golden donation trigger linked directly to PayPal.Me.
 
-A browser-based PS4 jailbreak project targeting firmware versions in the **11.50–13.00** range, customized with a fully automated UI, custom OGH branding logo, and an integrated real-time cache progress indicator.
+---
 
-The project combines firmware-specific offsets, JavaScript exploitation chains, memory primitives, and kernel payloads into a self-contained web-based loader. It is designed to run directly from the native PS4 web browser and includes completely offline caching so the required assets can remain available after the initial load even without an internet connection.
+## 🛠️ Project Structure
 
-> **Disclaimer:** This project is intended for research, educational, and legitimate homebrew development purposes. Use it only on hardware and software you own or are authorized to modify. The authors and distributors are not responsible for damage, data loss, or other consequences resulting from its use.
 
-## Features
 
-- **Automated Execution:** Zero interaction required. The exploit launches itself after a 3-second buffer.
-- **Visual Progress Bar:** Real-time feedback showing caching percentage directly on your screen.
-- **Custom OGH Branding:** Replaced placeholders with custom high-definition brand assets.
-- Support for both `lapse` and `poops` memory corruption chains.
-- Firmware-specific WebKit and kernel offsets up to 13.00.
-- JavaScript memory read/write primitives.
-- Worker-based RPC support for memory operations and execution pivots.
-- Kernel patch blobs for supported firmware versions built directly into the server files.
-- Offline browser caching through the updated Application Cache manifest.
-
-## Troubleshooting
-
-Most issues on the PlayStation 4 web browser are usually solved by pressing the **Options** button on your controller, going into settings, and selecting **Delete Cookies** and **Clear Website Data**. If you encounter repeated "Not Enough System Memory" errors, simply restart your console and reload your custom link.
-
-## Supported Firmware
-
-The launcher currently routes firmware versions automatically as follows:
-
-| Firmware | Chain |
-| --- | --- |
-| 11.50 | `lapse` |
-| 11.52 | `lapse` |
-| 12.00 | `lapse` |
-| 12.02 | `lapse` |
-| 12.50 | `poops` |
-| 12.52 | `poops` |
-| 13.00 | `poops` |
-
-*Note: Firmware 11.00 offsets are present inside the file structure and could theoretically be triggered.*
-
-## Project Structure
-
-```text
-.
-├── index.html
-├── run_lapse.html
-├── run_poops.html
-├── chain_lapse.js
-├── chain_poops.js
-├── core.js
-├── mem.js
-├── int64.js
-├── rpc_worker.js
-├── ps4_offsets.js
-├── payload.bin
-├── patches/
+├── index.html          # Automated home layout with progress bar & PayPal
+├── run_lapse.html      # Re-designed Lapse chain execution page
+├── run_poops.html      # Re-designed Poops chain execution page
+├── chain_lapse.js      # Exploit mechanics for 11.50 - 12.02
+├── chain_poops.js      # Exploit mechanics for 12.50 - 13.00
+├── core.js             # Shared exploit core orchestration
+├── mem.js              # Read/Write primitives
+├── int64.js            # 64-bit integer helper data types
+├── rpc_worker.js       # Background execution pipeline thread
+├── ps4_offsets.js      # Firmware configuration registers database
+├── payload.bin         # Standard modular target code payload loader
+├── patches/            # Hardcoded compilation binary blobs
 │   ├── 1100.bin
 │   ├── 1150.bin
 │   ├── 1200.bin
 │   ├── 1250.bin
 │   └── 1300.bin
-├── cache.appcache
-├── logo_raw.png
-└── EXTRACTION_MANIFEST.json
+├── cache.appcache      # All-in-one storage manifest for offline hosting
+├── logo_raw.png        # Circular yellow & blue OGH brand icon
+├── background.jpg      # Immersive PlayStation background wallpaper
+├── success.jpg         # Explicit "Jailbreak success" screen graphic
+└── failed.jpg          # Explicit "Jailbreak failed" screen graphic
 ```
 
+---
+
+## 🎮 Supported Firmware Configurations
+
+The framework routes your system user-agent version to the correct target block automatically:
+
+| Firmware | Exploitation Pipeline |
+| --- | --- |
+| **11.50** | `lapse` chain |
+| **11.52** | `lapse` chain |
+| **12.00** | `lapse` chain |
+| **12.02** | `lapse` chain |
+| **12.50** | `poops` chain |
+| **12.52** | `poops` chain |
+| **13.00** | `poops` chain |
+
+---
+
+## ⚙️ How to use on your PS4
+
+1. Launch your console's native **Web Browser** application.
+2. Press the **Options** button on your controller, open settings, and execute both **Delete Cookies** and **Clear Website Data** to prevent old conflicts.
+3. Saisissez l'adresse : **https://codeogh.github.io/ogh**
+4. Let the loading bar cache files up to `100%`. Once done, you can safely disconnect your PlayStation from the network; your host will load completely offline out of local browser storage memory.
+
+---
+
+## 💛 Support the Developer
+
+If you find this clean, fast, and stylized deployment framework helpful, consider supporting the customization and hosting maintenance efforts:
+
+👉 **[Faire un don avec PayPal](https://paypal.me)**
+
+---
+
+> **Disclaimer:** This project is intended exclusively for research, educational, and legitimate homebrew development purposes. Use it only on hardware and software you own or are explicitly authorized to modify. The authors and distributors assume zero liability for software instabilities, data corruption, or collateral system issues resulting from its usage.
