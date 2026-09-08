@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# build ogh_1300_exploit_fixed
+# build ogh_clear_background_activated
 
 index.html
 run_lapse.html
@@ -29,4 +29,3 @@ FALLBACK:
 index.html index.html
 run_lapse.html run_lapse.html
 run_poops.html run_poops.html
-
